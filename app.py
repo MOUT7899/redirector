@@ -1,7 +1,7 @@
-rom flask import Flask, request, redirect
+from flask import Flask, request, redirect
 import base64
 
-app = Flask(name)
+app = Flask(__name__)
 
 @app.route('/')
 def index():
@@ -14,5 +14,5 @@ def index():
     except Exception as e:
         return f'Error decoding URL: {e}', 400
 
-if name == 'main':
+if __name__ == '__main__':
     app.run(host='0.0.0.0', port=10000)
