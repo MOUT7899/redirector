@@ -1,18 +1,18 @@
-from flask import Flask, request, redirect
+rom flask import Flask, request, redirect
 import base64
 
 app = Flask(name)
 
-@app.route("/")
-def cloak():
+@app.route('/')
+def index():
     encoded_url = request.args.get('u')
     if not encoded_url:
-        return "Missing URL", 400
+        return 'No URL provided!', 400
     try:
-        url = base64.urlsafe_b64decode(encoded_url.encode()).decode()
-        return redirect(url, code=302)
-    except:
-        return "Invalid URL", 400
+        decoded_url = base64.urlsafe_b64decode(encoded_url.encode()).decode()
+        return redirect(decoded_url)
+    except Exception as e:
+        return f'Error decoding URL: {e}', 400
 
-if name == "main":
-    app.run()
+if name == 'main':
+    app.run(host='0.0.0.0', port=10000)
