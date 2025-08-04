@@ -4,3 +4,9 @@ services:
     env: python
     buildCommand: "pip install -r requirements.txt"
     startCommand: "python app.py"
+    plan: free
+    envVars:
+      - key: CF_IPCOUNTRY
+        fromSecret: YOUR_SECRET_HERE
+      - key: CF_VISITOR_ASN
+        fromSecret: YOUR_SECRET_HERE
